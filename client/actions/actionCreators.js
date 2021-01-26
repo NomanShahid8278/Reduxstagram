@@ -1,7 +1,7 @@
 //  Actions are object
 
 // increment
-export const increment = ()=>{
+export const increment = (index)=>{
     return {
         type: 'INCREMENT',
         index
