@@ -1,9 +1,13 @@
 import React,{useRef} from 'react'
-const Comments = ({postComments}) => {
-    const author = React.useRef(null);
+const Comments = ({postComments,params,addComment}) => {
+    const authorRef = useRef(null);
+    const commentRef = useRef(null);
     const handleSubmit = (e)=>{
         e.preventDefault()
-        console.log('Submitted')
+        const author = authorRef.current.value
+        const comment = commentRef.current.value
+        const postId = params.postId
+        addComment(author,comment,postId)
     }
     return(
         <div className="comments">
@@ -19,8 +23,8 @@ const Comments = ({postComments}) => {
                 )
             })}
             <form className="comment-form" onSubmit={handleSubmit}>
-                <input type="text" ref={author} placeholder="author"/>
-                {/* <input type="text" ref="comment" placeholder="comment"/> */}
+                <input type="text" ref={authorRef} placeholder="author"/>
+                <input type="text" ref={commentRef} placeholder="comment"/>
                 <input type="submit" hidden/>
             </form>
         </div>
